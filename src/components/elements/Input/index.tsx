@@ -3,8 +3,12 @@ import { Input as AntInput, InputProps as AntInputProps } from 'antd';
 
 import 'antd/lib/input/style/css';
 
-export interface InputProps extends AntInputProps {
+import {
+    withTracking,
+} from '../../contexts/withTracking';
 
+export interface InputProps extends AntInputProps {
+    
 }
 
 function Input(props: InputProps) {
@@ -17,3 +21,5 @@ function Input(props: InputProps) {
 }
 
 export default Input;
+
+export const InputWithTracking = withTracking(Input)

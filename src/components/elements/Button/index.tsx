@@ -6,7 +6,13 @@ import {
 
 import 'antd/lib/button/style/css';
 
-import { withDataContext } from '../../contexts/withDataContext';
+import {
+    withDataContext,
+} from '../../contexts/withDataContext';
+
+import {
+    withTracking,
+} from '../../contexts/withTracking';
 
 interface ButtonStateProps extends AntButtonProps {
     label: string;
@@ -22,14 +28,14 @@ export type ButtonProps = ButtonStateProps & ButtonActionProps
 function Button(props: ButtonProps) {
     const { label, context, onClick, customCallback, ...rest } = props;
 
-    function handleClick(e: React.MouseEvent) {
-        customCallback && customCallback(context);
-    }
+    // function handleClick(e: React.MouseEvent) {
+    //     customCallback && customCallback(context);
+    // }
 
     return (
         <AntButton
             {...rest}
-            onClick={handleClick}
+            onClick={onClick}
         >
             {props.label}
         </AntButton>
@@ -39,3 +45,4 @@ function Button(props: ButtonProps) {
 export default Button;
 
 export const ButtonWithContext = withDataContext(Button)
+export const ButtonWithTracking = withTracking(Button)

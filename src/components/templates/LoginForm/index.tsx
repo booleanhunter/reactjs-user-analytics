@@ -1,6 +1,5 @@
-import { useState, useEffect, createContext } from 'react';
 import { DataContext } from '../../contexts/withDataContext';
-import Button, {ButtonWithContext} from '../../elements/Button';
+import Button, { ButtonWithContext, ButtonWithTracking } from '../../elements/Button';
 
 import Input from '../../elements/Input';
 
@@ -16,8 +15,13 @@ const data = {
 }
 
 function LoginForm(props: LoginFormProps) {
-    function getContext (data: any) {
-        // console.log(data);
+
+    function verifyUsernameAndPassword (e: React.MouseEvent<HTMLElement, MouseEvent>) {
+        // app logic goes here
+    }
+
+    function logMouseEvent (event: React.MouseEvent<HTMLElement, MouseEvent>, data: any) {
+        // tracking logic goes here
     }
 
     return (
@@ -25,14 +29,24 @@ function LoginForm(props: LoginFormProps) {
             <Card
                 title="Login"
                 actions={[
-                    <ButtonWithContext
+                    <ButtonWithTracking
                         type="primary"
                         label="Login"
-                        customCallback={getContext}
+                        onClick={(e: any) => verifyUsernameAndPassword(e.value)}
+                        trackers={[{
+                            context: "Login and Signup",
+                            type: "onClick",
+                            callback: logMouseEvent,
+                            data: {
+                                element: "Login button",
+                                ...data,
+                            }
+                        }]}
                     />,
                     <Button
                         type="ghost"
                         label="Sign Up"
+                        onClick={verifyUsernameAndPassword}  
                     />
                 ]}>
                 <Input
