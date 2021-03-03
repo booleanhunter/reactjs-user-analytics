@@ -5,7 +5,7 @@ import 'antd/lib/input/style/css';
 
 import {
     withTracking,
-} from '../../contexts/withTracking';
+} from '../../../library/user-analytics/react/components/withTracking';
 
 export interface InputProps extends AntInputProps {
     

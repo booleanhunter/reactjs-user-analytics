@@ -1,8 +1,13 @@
-import { DataContext } from '../../contexts/withDataContext';
-import Button, { ButtonWithContext, ButtonWithTracking } from '../../elements/Button';
+import
+    UserInteractionResource,
+    {
+        UserInteraction,
+    }
+from '../../../library/user-analytics/lib/resources/userInteractionResource';
+import { DataContext } from '../../../library/user-analytics/react/contexts/dataContext';
 
-import Input from '../../elements/Input';
-
+import Button, { ButtonWithTracking } from '../../elements/Button';
+import Input, { InputWithTracking } from '../../elements/Input';
 import Card from '../../widgets/Card';
 
 export interface LoginFormProps {
@@ -10,18 +15,30 @@ export interface LoginFormProps {
 }
 
 const data = {
-    page: "Login page",
-    company: "My company",
-}
+    context: "Login Page",
+    app: {
+        version: "1",
+    },
+} as UserInteraction.DataContext;
 
 function LoginForm(props: LoginFormProps) {
 
-    function verifyUsernameAndPassword (e: React.MouseEvent<HTMLElement, MouseEvent>) {
+    function verifyUsernameAndPassword(e: React.MouseEvent<HTMLElement, MouseEvent>) {
         // app logic goes here
+        console.log("verifyUsernameAndPassword");
     }
 
-    function logMouseEvent (event: React.MouseEvent<HTMLElement, MouseEvent>, data: any) {
+    function logEvent(
+        event: React.MouseEvent<HTMLElement, MouseEvent>,
+        interactionResource: UserInteractionResource
+    ) {
         // tracking logic goes here
+        console.log("logEvent");
+        console.log(interactionResource);
+        /*
+            do whatever you want with the resource,
+            like save it to IndexedDB, compress it, save it via API, etc
+        */
     }
 
     return (
@@ -32,26 +49,42 @@ function LoginForm(props: LoginFormProps) {
                     <ButtonWithTracking
                         type="primary"
                         label="Login"
-                        onClick={(e: any) => verifyUsernameAndPassword(e.value)}
+                        onClick={verifyUsernameAndPassword}
+                        
                         trackers={[{
-                            context: "Login and Signup",
-                            type: "onClick",
-                            callback: logMouseEvent,
+                            action: "onClick",
+                            track: logEvent,
+                            
+                            // pass optional custom data
                             data: {
-                                element: "Login button",
-                                ...data,
+                                color: "blue",
                             }
                         }]}
+
+                        // optional props
+                        origin="Login Button"
+                        // context="AntD Card"
                     />,
                     <Button
                         type="ghost"
                         label="Sign Up"
-                        onClick={verifyUsernameAndPassword}  
+                        onClick={verifyUsernameAndPassword}
                     />
                 ]}>
-                <Input
+                <InputWithTracking
                     type="text"
                     placeholder="email"
+
+                    trackers={[{
+                        action: "onClick",
+                        track: logEvent,
+                        data: {
+                            customKey1: "input",
+                        }
+                    }]}
+
+                    // optional props
+                    origin="Email Input"
                 />
                 <Input
                     type="password"
@@ -59,7 +92,7 @@ function LoginForm(props: LoginFormProps) {
                 />
             </Card>
         </DataContext.Provider>
-        
+
     )
 }
 

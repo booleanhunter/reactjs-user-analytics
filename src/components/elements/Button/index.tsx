@@ -7,12 +7,8 @@ import {
 import 'antd/lib/button/style/css';
 
 import {
-    withDataContext,
-} from '../../contexts/withDataContext';
-
-import {
     withTracking,
-} from '../../contexts/withTracking';
+} from '../../../library/user-analytics/react/components/withTracking';
 
 interface ButtonStateProps extends AntButtonProps {
     label: string;
@@ -20,17 +16,13 @@ interface ButtonStateProps extends AntButtonProps {
 }
 
 export interface ButtonActionProps {
-    customCallback?: (data: any) => void;
+    
 }
 
 export type ButtonProps = ButtonStateProps & ButtonActionProps
 
 function Button(props: ButtonProps) {
-    const { label, context, onClick, customCallback, ...rest } = props;
-
-    // function handleClick(e: React.MouseEvent) {
-    //     customCallback && customCallback(context);
-    // }
+    const { label, onClick, ...rest } = props;
 
     return (
         <AntButton
@@ -44,5 +36,4 @@ function Button(props: ButtonProps) {
 
 export default Button;
 
-export const ButtonWithContext = withDataContext(Button)
-export const ButtonWithTracking = withTracking(Button)
+export const ButtonWithTracking = withTracking(Button);

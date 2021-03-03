@@ -1,7 +1,4 @@
-import React, { createContext } from 'react';
-
-const data = {} as any;
-export const DataContext = createContext(data);
+import { DataContext } from '../contexts/dataContext';
 
 export const withDataContext = <P extends object>(Component: React.ComponentType<P>) => {
     return function fn(props: P) {
