@@ -33,7 +33,8 @@ export namespace UserInteraction {
     export const TYPE = "UserInteraction";
 
     export type Action =
-    | "onClick";
+    | "onClick" 
+    | "onChange"
 
     export interface Tracker {
         action: Action;

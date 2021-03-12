@@ -28,6 +28,7 @@ export function withTracking (
             tracker: UserInteraction.Tracker,
         ) {
             const targetNode = e.target as HTMLElement;
+            const value = getValueFromNode(e);
             const userInteractionResource = UserInteraction.generateResource(
                 dataContext.app,
                 tracker.action,
@@ -40,7 +41,9 @@ export function withTracking (
                         target: targetNode.nodeName || e.currentTarget.nodeName,
                         innerHTML: targetNode.innerHTML,
                         innerText: targetNode.innerText,
-                        value: "",
+                        ...(value && {
+                            value,
+                        }),
                     },
                 },
                 tracker.data,
@@ -66,3 +69,12 @@ export function withTracking (
         );
     };
 };
+
+function getValueFromNode(e: React.SyntheticEvent) {
+
+    if (e.currentTarget.nodeName === "INPUT") {
+        const currentTarget = e.target as HTMLInputElement;
+        return currentTarget.value
+    }
+}
+
