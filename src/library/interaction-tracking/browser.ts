@@ -1,8 +1,12 @@
-interface OSDetails{
+export interface OSDetails{
     name: string;
     version: string;
 }
 
+/**
+ * Returns the Operating System information
+ *
+ */
 export function getUserOS() : OSDetails {
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
