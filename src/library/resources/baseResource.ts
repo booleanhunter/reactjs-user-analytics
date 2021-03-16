@@ -1,4 +1,9 @@
-export default interface BaseResource {
+/**
+ * Properties common across any type of user-analytics resource object.
+ * Information required for any kind of event tracking throughout the app.
+ *
+ */
+export interface BaseResource {
     app: {
         version: string,
     };
@@ -18,3 +23,5 @@ export default interface BaseResource {
         version: string,
     };
 }
+
+export default BaseResource;

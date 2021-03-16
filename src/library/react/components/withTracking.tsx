@@ -7,16 +7,27 @@ import {
 
 import { DataContext } from '../contexts/dataContext';
 
-type TrackerProps = {
+/**
+ * Props required for the Tracking component
+ */
+export type TrackerProps = {
     dataContext?: UserInteraction.DataContext;
     origin?: string,
     trackers: UserInteraction.Tracker[]
 } & Object<any>;
 
+
+/**
+ * HOC that returns the provided Component with UserInteraction tracking logic.
+ */
 export function withTracking (
     Component: React.ComponentType<any>
 ) {
-    return function Fn(props: TrackerProps) {
+    
+    /**
+     * Returns a Closure component for adding User Interaction Logic
+     */
+    return function(props: TrackerProps) {
         let eventHandlers: Object<any> = {};
         const { trackers, origin, dataContext: dataContextFromProps, ...originalProps } = props;
 
