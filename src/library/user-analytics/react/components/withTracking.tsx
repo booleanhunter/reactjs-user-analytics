@@ -8,7 +8,7 @@ import {
 import { DataContext } from '../contexts/dataContext';
 
 type TrackerProps = {
-    context?: string,
+    dataContext?: UserInteraction.DataContext;
     origin?: string,
     trackers: UserInteraction.Tracker[]
 } & Object<any>;
@@ -18,10 +18,13 @@ export function withTracking (
 ) {
     return function Fn(props: TrackerProps) {
         let eventHandlers: Object<any> = {};
-        const { trackers, ...originalProps } = props;
+        const { trackers, origin, dataContext: dataContextFromProps, ...originalProps } = props;
 
-        const dataContext = useContext(DataContext);
-        const context = props.context ? props.context : dataContext.context;
+        let dataContext = useContext(DataContext);
+
+        if (dataContextFromProps) {
+            dataContext = dataContextFromProps
+        }
 
         function trackUserInteraction(
             e: React.SyntheticEvent,
@@ -33,8 +36,10 @@ export function withTracking (
                 dataContext.app,
                 tracker.action,
                 {
-                    context,
-                    origin: originalProps.origin || "",
+                    context: dataContext.context,
+                    ...(originalProps.origin && {
+                        origin: originalProps.origin
+                    }),
                     component: Component.displayName || Component.name,
                     element: {
                         currentTarget: e.currentTarget.nodeName,
@@ -63,7 +68,7 @@ export function withTracking (
 
         return (
             <Component
-                { ...props }
+                { ...originalProps }
                 { ...eventHandlers }
             />
         );
