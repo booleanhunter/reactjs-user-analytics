@@ -118,7 +118,12 @@ function LandingPage(props: LandingPageProps) {
 
                             // optional props
                             origin="Landing Page"
-                            // context="AntD Card"
+                            dataContext={{
+                                app: {
+                                    version: "0",
+                                },
+                                context: "Custom Landing page"
+                            }}
                         />,
                     ]}>
                 

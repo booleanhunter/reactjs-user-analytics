@@ -63,7 +63,12 @@ function LoginForm(props: LoginFormProps) {
 
                         // optional props
                         origin="Login Button"
-                        // context="AntD Card"
+                        dataContext={{
+                            app: {
+                                version: "0",
+                            },
+                            context: "Custom login page"
+                        }}
                     />,
                     <Button
                         type="ghost"
@@ -75,16 +80,31 @@ function LoginForm(props: LoginFormProps) {
                     type="text"
                     placeholder="email"
 
-                    trackers={[{
-                        action: "onClick",
-                        track: logEvent,
-                        data: {
-                            customKey1: "input",
+                    trackers={[
+                        {
+                            action: "onClick",
+                            track: logEvent,
+                            data: {
+                                customKey1: "input",
+                            }
+                        },
+                        {
+                            action: "onChange",
+                            track: logEvent,
+                            data: {
+                                customKey1: "input",
+                            }
                         }
-                    }]}
+                    ]}
 
                     // optional props
-                    origin="Email Input"
+                    origin="Login Page Email Input"
+                    dataContext={{
+                        app: {
+                            version: "0",
+                        },
+                        context: "Custom login page"
+                    }}
                 />
                 <Input
                     type="password"

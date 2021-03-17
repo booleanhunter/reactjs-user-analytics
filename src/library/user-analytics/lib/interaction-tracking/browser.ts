@@ -1,4 +1,9 @@
-export function getUserOS() {
+interface OSDetails{
+    name: string;
+    version: string;
+}
+
+export function getUserOS() : OSDetails {
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
     const macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"];
