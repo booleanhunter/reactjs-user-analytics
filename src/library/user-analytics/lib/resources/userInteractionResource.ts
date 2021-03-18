@@ -11,7 +11,7 @@ export default interface UserInteractionResource extends BaseResource {
     action: UserInteraction.Action;
     source: {
         context: string;
-        origin: string;
+        origin?: string;
         component: string;
         element: {
             currentTarget: string;
