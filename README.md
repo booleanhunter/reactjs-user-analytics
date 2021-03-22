@@ -2,6 +2,11 @@
 
 This library enables tracking of UI events when a user interacts with a React or React Native application.
 
+## Features
+- **Progressive** - Uses latest JavaScript features and design patterns for a React codebase.
+- **Extensible** - A modular architecture and usage of Dependency.Inversion patterns gives you flexibility and allows you to easily extend features.
+- **TypeScript support**.
+
 ## Supported events
 - Form Events
   - `onChange`
