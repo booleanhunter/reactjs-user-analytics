@@ -1,29 +1,28 @@
 import { Layout, Menu } from 'antd';
+import styled from 'styled-components';
 
 import NavBar, { NavbarProps } from '../../widgets/NavBar';
 import Card from '../../widgets/Card';
 
-import styled  from 'styled-components';
-import
-    UserInteractionResource,
-    {
-        UserInteraction,
-    }
-from '../../../library/user-analytics/lib/resources/userInteractionResource';
+import UserInteractionResource, { UserInteraction } from '../../../library/user-analytics/lib/resources/userInteractionResource';
 import { DataContext } from '../../../library/user-analytics/react/contexts/dataContext';
 
-// import Header from '../../elements/Header';
 import { ButtonWithTracking } from '../../elements/Button';
 import { InputWithTracking } from '../../elements/Input';
 import { MenuItemWithTracking } from '../../elements/Menu/MenuItem';
 
-const { Header, Content, Footer } = Layout;
+import { StorageClient } from '../../../library/user-analytics/lib/data-processing/storage';
+const { Content } = Layout;
 
 
 export interface LandingPageProps extends NavbarProps {
     items: string[];
-    
 }
+
+const storage = StorageClient.init({
+    resourceLimit: 3,
+    apiUrl: 'http://localhost:3000/events',
+});
 
 const data = {
     context: "Landing Page",
@@ -31,6 +30,7 @@ const data = {
         version: "1",
     },
 } as UserInteraction.DataContext;
+
 
 function LandingPage(props: LandingPageProps) {
 
@@ -51,14 +51,17 @@ function LandingPage(props: LandingPageProps) {
         // tracking logic goes here
         console.log("logEvent");
         console.log(interactionResource);
+
         /*
             do whatever you want with the resource,
             like save it to IndexedDB, compress it, save it via API, etc
         */
+
+        storage.handle(event, interactionResource);
     }
 
     const headerStyle = {
-        textAlign: "center" as "center" 
+        textAlign: "center" as "center"
     };
 
     const { mode, theme, items, style, logo } = props;
@@ -68,8 +71,8 @@ function LandingPage(props: LandingPageProps) {
                 trackers={[
                     {
                         action: "onClick",
-                        track: logEvent,
-                        
+                        track: storage.handle,
+
                     }
                 ]}
                 origin="NavBar Header"
@@ -81,11 +84,11 @@ function LandingPage(props: LandingPageProps) {
             </MenuItemWithTracking>
         )
     });
-    
+
     return (
         <DataContext.Provider value={data}>
-             <Layout className="layout">
-                <NavBar 
+            <Layout className="layout">
+                <NavBar
                     mode={mode}
                     theme={theme}
                     style={style}
@@ -97,7 +100,7 @@ function LandingPage(props: LandingPageProps) {
                     <div style={headerStyle}>
                         <h1>Let us help solve your critical website development challenges.</h1>
                     </div>
-                </StyledContent>   
+                </StyledContent>
                 <NewsLetter
                     title="Newsletter"
                     actions={[
@@ -105,11 +108,11 @@ function LandingPage(props: LandingPageProps) {
                             type="primary"
                             label="Subscribe"
                             onClick={verifyEmail}
-                            
+
                             trackers={[{
                                 action: "onClick",
                                 track: logEvent,
-                                
+
                                 // pass optional custom data
                                 data: {
                                     color: "blue",
@@ -126,7 +129,7 @@ function LandingPage(props: LandingPageProps) {
                             }}
                         />,
                     ]}>
-                
+
                     <InputWithTracking
                         type="text"
                         placeholder="Type your email"
@@ -152,7 +155,7 @@ function LandingPage(props: LandingPageProps) {
                         // optional props
                         origin="Email Input"
                     />
-                </NewsLetter> 
+                </NewsLetter>
             </Layout>
         </DataContext.Provider>
     )
