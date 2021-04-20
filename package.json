@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/styled-components": "^5.1.8",
     "antd": "^4.12.3",
+    "pako": "^2.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
@@ -53,6 +54,7 @@
     "@storybook/addon-links": "^6.1.18",
     "@storybook/node-logger": "^6.1.18",
     "@storybook/preset-create-react-app": "^3.1.6",
-    "@storybook/react": "^6.1.18"
+    "@storybook/react": "^6.1.18",
+    "@types/pako": "^1.0.1"
   }
 }

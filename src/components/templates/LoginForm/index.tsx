@@ -9,7 +9,9 @@ import { DataContext } from '../../../library/user-analytics/react/contexts/data
 import Button, { ButtonWithTracking } from '../../elements/Button';
 import Input, { InputWithTracking } from '../../elements/Input';
 import Card from '../../widgets/Card';
-
+import WebWorker from '../../../library/user-analytics/webWorker/workerSetUp';
+import worker from '../../../library/user-analytics/webWorker/worker';
+import { useEffect } from 'react';
 export interface LoginFormProps {
 
 }
@@ -22,6 +24,14 @@ const data = {
 } as UserInteraction.DataContext;
 
 function LoginForm(props: LoginFormProps) {
+    let newWorker: any = new WebWorker(worker);
+    // useEffect(() => {
+    //     if(typeof(window.Worker) !== 'undefined') {
+            
+    //         newWorker = new WebWorker(worker)
+            
+    //     }
+    // },[])
 
     function verifyUsernameAndPassword(e: React.MouseEvent<HTMLElement, MouseEvent>) {
         // app logic goes here
@@ -39,6 +49,12 @@ function LoginForm(props: LoginFormProps) {
             do whatever you want with the resource,
             like save it to IndexedDB, compress it, save it via API, etc
         */
+        //console.log("worker is", worker)
+        newWorker.postMessage(interactionResource);
+        newWorker.addEventListener('message', (event: MessageEvent) => {
+			console.log("new returned data", event.data)
+		});
+       
     }
 
     return (
