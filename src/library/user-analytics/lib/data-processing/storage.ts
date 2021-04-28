@@ -1,81 +1,116 @@
-// localforage
 import localforage from 'localforage';
 
 import UserInteractionResource from '../resources/userInteractionResource';
-import { init } from './web-worker';
 
-const worker = init();
+import { gzip } from './compression';
 
-interface StorageSettings {
+declare let self: WorkerGlobalScope;
+
+(function (self) {
+    console.log("WorkerGlobalScope: ", WorkerGlobalScope)
+    console.log("self: ", self);
+})(self);
+
+export interface StorageSettings {
     resourceLimit: number;
+    ttl: number;
     apiUrl: string;
     dataKey?: string;
 }
 
 const STORAGE_SETTINGS_DEFAULTS : Required<StorageSettings> = {
     resourceLimit: 0,
+    ttl: 5000,
     apiUrl: "",
     dataKey: "events",
+
 }
 
-export const StorageClient = (function () {
-    let storageSettings : Required<StorageSettings> = STORAGE_SETTINGS_DEFAULTS;
-    
-    return {
-        init: function (options: StorageSettings) {
-            if (storageSettings.resourceLimit === 0) {
-                storageSettings = {
-                    ...options,
-                    dataKey: options.dataKey ? options.dataKey : storageSettings.dataKey
-                };
+let storageSettings : Required<StorageSettings> = STORAGE_SETTINGS_DEFAULTS;
+let isAppLoaded : boolean = true;
+
+export async function init(options: StorageSettings) {
+    if (storageSettings.resourceLimit === 0) {
+        storageSettings = {
+            ...options,
+            dataKey: options.dataKey ? options.dataKey : storageSettings.dataKey,
+        };
+    }
+
+    reAttemptSync(storageSettings.apiUrl, storageSettings.ttl, storageSettings.dataKey);
+}
+
+export function getConfig() {
+    return storageSettings;
+}
+
+export async function handle(data: UserInteractionResource) {
+    let eventsData = await retrieveData(storageSettings.dataKey) as any[];
+
+    if(eventsData) {
+        if(eventsData.length < storageSettings.resourceLimit) {
+            saveData(storageSettings.dataKey, [data, ...eventsData]);
+        } else {
+            if(self.navigator.onLine) {
+                const compressedData = gzip(eventsData) as Uint8Array;
+
+                syncData(storageSettings.apiUrl, compressedData)
+                    .then((res) => {
+                        clearData();
+                        saveData(storageSettings.dataKey, [data]);
+                    })
+                    .catch(err => {
+                        saveData(storageSettings.dataKey, [data, ...eventsData])
+                    })     
             }
-
-            return this;
-        },
-
-        getConfig: function() {
-            return storageSettings;
-        },
-
-        handle: async function(
-            event: React.MouseEvent<HTMLElement, MouseEvent>, data: UserInteractionResource
-        ) {
-            let eventsData = await retrieveData(storageSettings.dataKey) as any[];
-
-            if(eventsData) {
-                if(eventsData.length < storageSettings.resourceLimit) {
-                    saveData(storageSettings.dataKey, [data, ...eventsData]);
-                } else {
-                    if(window.navigator.onLine) {
-                        const compressedData = await worker.gzip(eventsData) as Uint8Array;
-                        
-                        syncData(storageSettings.apiUrl, compressedData)
-                            .then((res) => {
-                                clearData();
-                                saveData(storageSettings.dataKey, [data]);
-                            })
-                            .catch(err => {
-                                saveData(storageSettings.dataKey, [data, ...eventsData])
-                            })     
-                    }
-                    else {
-                        saveData(storageSettings.dataKey, [data, ...eventsData]);
-                    }
-                }
-            } else {
-                saveData(storageSettings.dataKey, [data]);
+            else {
+                saveData(storageSettings.dataKey, [data, ...eventsData]);
             }
-            
         }
-    };
-})();
+    } else {
+        saveData(storageSettings.dataKey, [data]);
+    }
+    
+}
 
+export function onAppClose() {
+    isAppLoaded = false;
+    reAttemptSync(storageSettings.apiUrl, storageSettings.ttl, storageSettings.dataKey);
+}
 
-function retrieveData(key: string) {
+function reAttemptSync(url: string, ttl: number, key: string) {
+    
+    async function compressAndSend(){
+        if(self.navigator.onLine) {
+            const eventsData = await retrieveData(key) as any[];
+            if(eventsData) {
+                const compressedData = gzip(eventsData) as Uint8Array;
+
+                syncData(url, compressedData)
+                    .then((res) => {
+                        clearData();
+                    })
+                    .catch(err => {
+                        console.log("error is", err)
+                    });
+            } else {
+                if (!isAppLoaded) {
+                    // @ts-ignore
+                    self.close(); // kill web worker
+                }
+            }
+        }
+    }
+
+    const interval = setInterval(compressAndSend, ttl);
+
+}
+
+export function retrieveData(key: string) {
     return localforage.getItem(key)
 }
 
-function saveData(key: string, data: UserInteractionResource[]) : Promise<void> {
+export function saveData(key: string, data: UserInteractionResource[]) : Promise<void> {
     return localforage.setItem(key, data)
         .then((result) => {
             // console.log(result)
@@ -85,11 +120,8 @@ function saveData(key: string, data: UserInteractionResource[]) : Promise<void> 
         });
 }
 
-function clearData() {
+export function clearData() {
     localforage.clear()
-        .then((data) => {
-            console.log("data has been deleted successfully", data)
-        })
 }
 
 export async function syncData(url: string, data: Uint8Array) {

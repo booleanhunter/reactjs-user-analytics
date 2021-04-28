@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
 
@@ -10,19 +11,22 @@ import { DataContext } from '../../../library/user-analytics/react/contexts/data
 import { ButtonWithTracking } from '../../elements/Button';
 import { InputWithTracking } from '../../elements/Input';
 import { MenuItemWithTracking } from '../../elements/Menu/MenuItem';
+import { workerInstance } from '../../../library/user-analytics/lib/data-processing/web-worker';
 
-import { StorageClient } from '../../../library/user-analytics/lib/data-processing/storage';
+const worker = workerInstance.getInstance();
+
+worker.init({
+    resourceLimit: 5,
+    ttl: 7000,
+    apiUrl: 'http://localhost:3000/events',
+    dataKey: "events"
+});
+
 const { Content } = Layout;
-
 
 export interface LandingPageProps extends NavbarProps {
     items: string[];
 }
-
-const storage = StorageClient.init({
-    resourceLimit: 3,
-    apiUrl: 'http://localhost:3000/events',
-});
 
 const data = {
     context: "Landing Page",
@@ -31,10 +35,9 @@ const data = {
     },
 } as UserInteraction.DataContext;
 
-
 function LandingPage(props: LandingPageProps) {
 
-    function handleClick(e: React.MouseEvent<HTMLElement, MouseEvent>) {
+    function handleNavbarClick(e: React.MouseEvent<HTMLElement, MouseEvent>) {
         // app logic goes here
         console.log("navbar link has been clicked with this Item", e);
     }
@@ -56,8 +59,8 @@ function LandingPage(props: LandingPageProps) {
             do whatever you want with the resource,
             like save it to IndexedDB, compress it, save it via API, etc
         */
-
-        storage.handle(event, interactionResource);
+        worker.handle(interactionResource);        
+        
     }
 
     const headerStyle = {
@@ -71,14 +74,13 @@ function LandingPage(props: LandingPageProps) {
                 trackers={[
                     {
                         action: "onClick",
-                        track: storage.handle,
-
+                        track: logEvent,
                     }
                 ]}
                 origin="NavBar Header"
                 key={k}
                 name={item}
-                onClick={handleClick}
+                onClick={handleNavbarClick}
             >
                 {item}
             </MenuItemWithTracking>
