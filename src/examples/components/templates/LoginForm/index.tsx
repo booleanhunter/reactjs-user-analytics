@@ -3,8 +3,8 @@ import
     {
         UserInteraction,
     }
-from '../../../library/user-analytics/lib/resources/userInteractionResource';
-import { DataContext } from '../../../library/user-analytics/react/contexts/dataContext';
+from 'library/resources/userInteractionResource';
+import { DataContext } from 'library/react/contexts/dataContext';
 
 import Button, { ButtonWithTracking } from '../../elements/Button';
 import Input, { InputWithTracking } from '../../elements/Input';
