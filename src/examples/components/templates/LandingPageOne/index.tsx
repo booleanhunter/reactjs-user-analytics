@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import NavBar, { NavbarProps } from '../../widgets/NavBar';
 import Card from '../../widgets/Card';
 
-import UserInteractionResource, { UserInteraction } from '../../../library/user-analytics/lib/resources/userInteractionResource';
-import { DataContext } from '../../../library/user-analytics/react/contexts/dataContext';
+import UserInteractionResource, { UserInteraction } from 'library/resources/userInteractionResource';
+import { DataContext } from 'library/react/contexts/dataContext';
+import { workerInstance } from 'library/data-processing/web-worker';
 
 import { ButtonWithTracking } from '../../elements/Button';
 import { InputWithTracking } from '../../elements/Input';
 import { MenuItemWithTracking } from '../../elements/Menu/MenuItem';
-import { workerInstance } from '../../../library/user-analytics/lib/data-processing/web-worker';
 
 const worker = workerInstance.getInstance();
 

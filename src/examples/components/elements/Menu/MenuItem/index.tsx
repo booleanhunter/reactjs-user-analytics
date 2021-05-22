@@ -8,7 +8,7 @@ import 'antd/lib/menu/style/css';
 
 import {
     withTracking,
-} from '../../../../library/user-analytics/react/components/withTracking';
+} from 'library/react/components/withTracking';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 

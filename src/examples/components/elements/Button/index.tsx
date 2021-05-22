@@ -8,7 +8,7 @@ import 'antd/lib/button/style/css';
 
 import {
     withTracking,
-} from '../../../library/user-analytics/react/components/withTracking';
+} from 'library/react/components/withTracking';
 
 interface ButtonStateProps extends AntButtonProps {
     label: string;

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import {
     Object,
     UserInteraction,
-} from '../../lib/resources/userInteractionResource';
+} from '../../resources/userInteractionResource';
 
 import { DataContext } from '../contexts/dataContext';
 
