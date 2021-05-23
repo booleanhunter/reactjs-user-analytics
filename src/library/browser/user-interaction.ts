@@ -1,8 +1,8 @@
-import localforage from 'localforage';
-
 import UserInteractionResource from '../resources/userInteractionResource';
 
-import { gzip } from './compression';
+import { gzip } from '../data-processing/compression';
+
+import { retrieveData, saveData, clearData } from '../browser/storage';
 
 declare let self: WorkerGlobalScope;
 
@@ -29,15 +29,19 @@ const STORAGE_SETTINGS_DEFAULTS : Required<StorageSettings> = {
 let storageSettings : Required<StorageSettings> = STORAGE_SETTINGS_DEFAULTS;
 let isAppLoaded : boolean = true;
 
-export async function init(options: StorageSettings) {
+export async function start(options: StorageSettings) {
+    init(options);
+
+    reAttemptSync(storageSettings.apiUrl, storageSettings.ttl, storageSettings.dataKey);
+}
+
+export function init(options: StorageSettings) {
     if (storageSettings.resourceLimit === 0) {
         storageSettings = {
             ...options,
             dataKey: options.dataKey ? options.dataKey : storageSettings.dataKey,
         };
     }
-
-    reAttemptSync(storageSettings.apiUrl, storageSettings.ttl, storageSettings.dataKey);
 }
 
 export function getConfig() {
@@ -104,24 +108,6 @@ function reAttemptSync(url: string, ttl: number, key: string) {
 
     const interval = setInterval(compressAndSend, ttl);
 
-}
-
-export function retrieveData(key: string) {
-    return localforage.getItem(key)
-}
-
-export function saveData(key: string, data: UserInteractionResource[]) : Promise<void> {
-    return localforage.setItem(key, data)
-        .then((result) => {
-            // console.log(result)
-        })
-        .catch((err) => {
-            console.error("Error saving data", err)
-        });
-}
-
-export function clearData() {
-    localforage.clear()
 }
 
 export async function syncData(url: string, data: Uint8Array) {
