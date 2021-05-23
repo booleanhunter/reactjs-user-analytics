@@ -9,7 +9,7 @@ import { DataContext } from 'library/react/contexts/dataContext';
 import Button, { ButtonWithTracking } from '../../elements/Button';
 import Input, { InputWithTracking } from '../../elements/Input';
 import Card from '../../widgets/Card';
-import { useEffect } from 'react';
+
 export interface LoginFormProps {
 
 }
@@ -22,13 +22,6 @@ const data = {
 } as UserInteraction.DataContext;
 
 function LoginForm(props: LoginFormProps) {
-    // useEffect(() => {
-    //     if(typeof(window.Worker) !== 'undefined') {
-            
-    //         newWorker = new WebWorker(worker)
-            
-    //     }
-    // },[])
 
     function verifyUsernameAndPassword(e: React.MouseEvent<HTMLElement, MouseEvent>) {
         // app logic goes here
@@ -46,7 +39,6 @@ function LoginForm(props: LoginFormProps) {
             do whatever you want with the resource,
             like save it to IndexedDB, compress it, save it via API, etc
         */
-        //console.log("worker is", worker)
        
     }
 

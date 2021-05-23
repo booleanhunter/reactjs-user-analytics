@@ -1,6 +1,6 @@
 import BaseResource from './baseResource';
 
-import { getUserOS } from '../interaction-tracking/browser';
+import { getUserOS } from '../browser/utils';
 
 export type Object<T> = {
     [P in keyof T]: T[P]

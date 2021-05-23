@@ -7,7 +7,7 @@ export interface OSDetails{
  * Returns the Operating System information
  *
  */
-export function getUserOS() : OSDetails {
+ export function getUserOS() : OSDetails {
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
     const macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"];

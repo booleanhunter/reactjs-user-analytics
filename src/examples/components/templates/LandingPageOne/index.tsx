@@ -8,6 +8,7 @@ import Card from '../../widgets/Card';
 import UserInteractionResource, { UserInteraction } from 'library/resources/userInteractionResource';
 import { DataContext } from 'library/react/contexts/dataContext';
 import { workerInstance } from 'library/data-processing/web-worker';
+import { initializeBeacon } from 'library/browser/storage';
 
 import { ButtonWithTracking } from '../../elements/Button';
 import { InputWithTracking } from '../../elements/Input';
@@ -15,12 +16,14 @@ import { MenuItemWithTracking } from '../../elements/Menu/MenuItem';
 
 const worker = workerInstance.getInstance();
 
-worker.init({
+worker.start({
     resourceLimit: 5,
     ttl: 7000,
     apiUrl: 'http://localhost:3000/events',
     dataKey: "events"
 });
+
+initializeBeacon("events", 'http://localhost:3000/events');
 
 const { Content } = Layout;
 
