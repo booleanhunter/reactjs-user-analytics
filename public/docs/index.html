@@ -1,0 +1,470 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>user-analytics</title>
+	<meta name="description" content="Documentation for user-analytics">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">user-analytics</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>user-analytics</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#user-analytics" id="user-analytics" style="color: inherit; text-decoration: none;">
+					<h1>User Analytics</h1>
+				</a>
+				<p>This library enables tracking of UI events when a user interacts with a React or React Native application.</p>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<ul>
+					<li><strong>Progressive</strong> - Uses latest JavaScript features and design patterns for a React codebase.</li>
+					<li><strong>Extensible</strong> - A modular architecture and usage of Dependency.Inversion patterns gives you flexibility and allows you to easily extend features.</li>
+					<li><strong>TypeScript support</strong>.</li>
+				</ul>
+				<a href="#supported-events" id="supported-events" style="color: inherit; text-decoration: none;">
+					<h2>Supported events</h2>
+				</a>
+				<ul>
+					<li>Form Events<ul>
+							<li><code>onChange</code></li>
+						</ul>
+					</li>
+					<li>Mouse Events<ul>
+							<li><code>onClick</code></li>
+							<li><code>onHover</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#work-in-progress" id="work-in-progress" style="color: inherit; text-decoration: none;">
+					<h2>Work in Progress</h2>
+				</a>
+				<ul>
+					<li><p>Eventually, the library will have exhaustive coverage and support for many more events, such as:</p>
+						<ul>
+							<li>Wheel Events</li>
+							<li>Touch Events</li>
+							<li>Keyboard Events</li>
+							<li>Mouse Events</li>
+							<li>and more.</li>
+						</ul>
+					</li>
+					<li><p>User Interaction journey mapping</p>
+					</li>
+					<li><p>Session Recording</p>
+					</li>
+				</ul>
+				<a href="#instructions-of-usage" id="instructions-of-usage" style="color: inherit; text-decoration: none;">
+					<h2>Instructions of Usage</h2>
+				</a>
+				<ol>
+					<li><p>First, import the library in your project.</p>
+					</li>
+					<li><p>In-order to add user-tracking ability to your component or element, import the <code>withTracking</code> function (Higher-order component) and wrap the component. Here&#39;s an example using a simple <code>Button</code> component:</p>
+					</li>
+				</ol>
+				<p><code>export const ButtonWithTracking = withTracking(Button)</code></p>
+				<p><code>ButtonWithTracking</code> will have all the features and properties of the <code>Button</code> component, but with interaction-tracking superpowers!</p>
+				<ol start="3">
+					<li>Finally, use <code>ButtonWithTracking</code> inside your app anywhere where you&#39;d like to track user-events occurring on this component, such as <code>onClick</code> or <code>onHover</code>.</li>
+				</ol>
+				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">Button</span><span style="color: #000000">, { </span><span style="color: #001080">ButtonWithTracking</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../../elements/Button&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">Home</span><span style="color: #000000">() {</span>
+
+<span style="color: #000000">    </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">handleClick</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">: </span><span style="color: #267F99">React</span><span style="color: #000000">.</span><span style="color: #267F99">MouseEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">HTMLElement</span><span style="color: #000000">, </span><span style="color: #267F99">MouseEvent</span><span style="color: #000000">&gt;) {</span>
+<span style="color: #000000">        </span><span style="color: #008000">// app logic goes here</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">logEvent</span><span style="color: #000000">(</span>
+<span style="color: #000000">        </span><span style="color: #001080">event</span><span style="color: #000000">: </span><span style="color: #267F99">React</span><span style="color: #000000">.</span><span style="color: #267F99">MouseEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">HTMLElement</span><span style="color: #000000">, </span><span style="color: #267F99">MouseEvent</span><span style="color: #000000">&gt;,</span>
+<span style="color: #000000">        </span><span style="color: #001080">interactionResource</span><span style="color: #000000">: </span><span style="color: #267F99">UserInteractionResource</span>
+<span style="color: #000000">    ) {</span>
+<span style="color: #000000">        </span><span style="color: #008000">/*</span>
+<span style="color: #008000">            do whatever you want with the resource,</span>
+<span style="color: #008000">            like save it to IndexedDB, compress it, save it via API, etc</span>
+<span style="color: #008000">        */</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">interactionResource</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> (</span>
+<span style="color: #000000">        &lt;</span><span style="color: #001080">ButtonWithTracking</span>
+<span style="color: #000000">            </span><span style="color: #001080">type</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;text&quot;</span>
+<span style="color: #000000">            </span><span style="color: #001080">onClick</span><span style="color: #000000">={</span><span style="color: #001080">handleClick</span><span style="color: #000000">}</span>
+
+<span style="color: #000000">            </span><span style="color: #001080">trackers</span><span style="color: #000000">={</span><span style="color: #001080">[</span>
+<span style="color: #001080">                </span><span style="color: #008000">// track onClick event</span>
+<span style="color: #001080">                {</span>
+<span style="color: #001080">                    action: </span><span style="color: #A31515">&quot;onClick&quot;</span><span style="color: #001080">, </span><span style="color: #008000">// event to track</span>
+<span style="color: #001080">                    track: logEvent, </span><span style="color: #008000">// callback function that runs whenever the event occurs</span>
+<span style="color: #001080">                }</span>
+<span style="color: #001080">            ]}</span>
+<span style="color: #001080">        &gt;   </span>
+<span style="color: #001080">    )</span>
+<span style="color: #001080">}</span>
+
+<span style="color: #001080">export default Home;</span>
+</code></pre>
+				<p>You can add multiple tracker objects within the <code>trackers</code> array if you need to track more than one event occurring within the component.</p>
+				<a href="#advanced-usage" id="advanced-usage" style="color: inherit; text-decoration: none;">
+					<h2>Advanced Usage</h2>
+				</a>
+				<a href="#mapping-a-user39s-journey" id="mapping-a-user39s-journey" style="color: inherit; text-decoration: none;">
+					<h3>Mapping a user&#39;s journey</h3>
+				</a>
+				<p><strong>Use-case</strong>:
+				Say you have 2 react components - a <code>ButtonWithTracking</code> configured to track <code>onClick</code> events, and a <code>InputWithTracking</code> component configured to capture <code>onChange</code> events. These components are being used in 2 different pages or templates in your application - a login form, and a newsletter subscription form.</p>
+				<p>In this scenario, it is useful to capture a global &#39;context&#39; within which the events occur - such as the page or the container component details, and the app version. This information is useful to plot out the user&#39;s journey, which will give you a more contextual understanding of how the user navigates through your app.</p>
+				<ul>
+					<li>
+						<a href="#provide-and-capture-contextual-data-using-react-context-provider-ltdatacontextprovidergt" id="provide-and-capture-contextual-data-using-react-context-provider-ltdatacontextprovidergt" style="color: inherit; text-decoration: none;">
+							<h4>Provide and capture contextual data using React Context Provider <code>&lt;DataContext.Provider&gt;</code></h4>
+						</a>
+						<p>Using the <code>&lt;DataContext.Provider&gt;</code>, you can provide the global &#39;context&#39; to your tracking components without having to pass them explicitly via props. Here&#39;s how:</p>
+						<ul>
+							<li><p>Create a <code>DataContext</code> object.</p>
+								<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dataContext</span><span style="color: #000000"> = {</span>
+<span style="color: #001080">context:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Login Form&quot;</span><span style="color: #000000">,</span>
+<span style="color: #001080">app:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">version:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;1&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">},</span>
+<span style="color: #000000">} </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">UserInteraction</span><span style="color: #000000">.</span><span style="color: #267F99">DataContext</span><span style="color: #000000">;</span>
+</code></pre>
+							</li>
+							<li><p>Next, wrap your template or container component within <code>DataContext.Provider</code> and provide it the <code>dataContext</code> value:</p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">DataContext</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../../../library/user-analytics/react/contexts/dataContext&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">Button</span><span style="color: #000000">, { </span><span style="color: #001080">ButtonWithTracking</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../../elements/Button&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">LoginForm</span><span style="color: #000000">() {</span>
+
+<span style="color: #000000">    </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">logEvent</span><span style="color: #000000">(</span>
+<span style="color: #000000">        </span><span style="color: #001080">event</span><span style="color: #000000">: </span><span style="color: #267F99">React</span><span style="color: #000000">.</span><span style="color: #267F99">MouseEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">HTMLElement</span><span style="color: #000000">, </span><span style="color: #267F99">MouseEvent</span><span style="color: #000000">&gt;,</span>
+<span style="color: #000000">        </span><span style="color: #001080">interactionResource</span><span style="color: #000000">: </span><span style="color: #267F99">UserInteractionResource</span>
+<span style="color: #000000">    ) {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">interactionResource</span><span style="color: #000000">.</span><span style="color: #001080">app</span><span style="color: #000000">.</span><span style="color: #001080">version</span><span style="color: #000000">) </span><span style="color: #008000">// Will print &quot;1&quot;</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">interactionResource</span><span style="color: #000000">.</span><span style="color: #001080">source</span><span style="color: #000000">.</span><span style="color: #001080">context</span><span style="color: #000000">); </span><span style="color: #008000">// Will print &quot;Login Form&quot;</span>
+
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> (</span>
+<span style="color: #000000">        &lt;</span><span style="color: #001080">DataContext</span><span style="color: #000000">.</span><span style="color: #001080">Provider</span><span style="color: #000000"> </span><span style="color: #001080">value</span><span style="color: #000000">={</span><span style="color: #001080">dataContext</span><span style="color: #000000">}&gt; </span><span style="color: #008000">// Pass the dataContext value</span>
+<span style="color: #000000">            &lt;</span><span style="color: #001080">ButtonWithTracking</span>
+<span style="color: #000000">                </span><span style="color: #001080">type</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;text&quot;</span>
+<span style="color: #000000">                </span><span style="color: #001080">onClick</span><span style="color: #000000">={</span><span style="color: #001080">handleClick</span><span style="color: #000000">}</span>
+
+<span style="color: #000000">                </span><span style="color: #001080">trackers</span><span style="color: #000000">={</span><span style="color: #001080">[</span>
+<span style="color: #001080">                    </span><span style="color: #008000">// track onClick event</span>
+<span style="color: #001080">                    {</span>
+<span style="color: #001080">                        action: </span><span style="color: #A31515">&quot;onClick&quot;</span><span style="color: #001080">,</span>
+<span style="color: #001080">                        track: logEvent,</span>
+<span style="color: #001080">                        </span>
+<span style="color: #001080">                        data: { </span><span style="color: #008000">// pass optional custom data</span>
+<span style="color: #001080">                            color: </span><span style="color: #A31515">&quot;blue&quot;</span><span style="color: #001080">,</span>
+<span style="color: #001080">                        }</span>
+<span style="color: #001080">                    }</span>
+<span style="color: #001080">                ]}</span>
+<span style="color: #001080">            &gt;  </span>
+<span style="color: #001080">        &lt;/DataContext.Provider&gt; </span>
+<span style="color: #001080">    )</span>
+<span style="color: #001080">}</span>
+
+<span style="color: #001080">export default LoginForm;</span>
+
+</code></pre>
+				<p>This way, your tracking components nested anywhere within the provider will receive the <code>dataContext</code> object and will return it as part of the <code>UserInteractionResource</code> object.</p>
+				<ul>
+					<li>
+						<a href="#providing-data-context-as-regular-props" id="providing-data-context-as-regular-props" style="color: inherit; text-decoration: none;">
+							<h4>Providing Data Context as regular props</h4>
+						</a>
+					</li>
+				</ul>
+				<p>If you don&#39;t want to provide data using <code>DataContext.Provider</code> or want to override it with a different value, you can pass them explicitly via props:</p>
+				<pre><code><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">LoginForm</span><span style="color: #000000">() {</span>
+
+<span style="color: #000000">    </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">logEvent</span><span style="color: #000000">(</span>
+<span style="color: #000000">        </span><span style="color: #001080">event</span><span style="color: #000000">: </span><span style="color: #267F99">React</span><span style="color: #000000">.</span><span style="color: #267F99">MouseEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">HTMLElement</span><span style="color: #000000">, </span><span style="color: #267F99">MouseEvent</span><span style="color: #000000">&gt;,</span>
+<span style="color: #000000">        </span><span style="color: #001080">interactionResource</span><span style="color: #000000">: </span><span style="color: #267F99">UserInteractionResource</span>
+<span style="color: #000000">    ) {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">interactionResource</span><span style="color: #000000">.</span><span style="color: #001080">app</span><span style="color: #000000">.</span><span style="color: #001080">version</span><span style="color: #000000">) </span><span style="color: #008000">// Will print &quot;0&quot;</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">interactionResource</span><span style="color: #000000">.</span><span style="color: #001080">source</span><span style="color: #000000">.</span><span style="color: #001080">context</span><span style="color: #000000">); </span><span style="color: #008000">// Will print &quot;Login Form&quot;</span>
+
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> (</span>
+<span style="color: #000000">        &lt;</span><span style="color: #001080">ButtonWithTracking</span>
+<span style="color: #000000">            </span><span style="color: #001080">type</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;text&quot;</span>
+<span style="color: #000000">            </span><span style="color: #001080">onClick</span><span style="color: #000000">={</span><span style="color: #001080">handleClick</span><span style="color: #000000">}</span>
+
+<span style="color: #000000">            </span><span style="color: #001080">trackers</span><span style="color: #000000">={</span><span style="color: #001080">[</span>
+<span style="color: #001080">                </span><span style="color: #008000">// track onClick event</span>
+<span style="color: #001080">                {</span>
+<span style="color: #001080">                    action: </span><span style="color: #A31515">&quot;onClick&quot;</span><span style="color: #001080">,</span>
+<span style="color: #001080">                    track: logEvent,</span>
+<span style="color: #001080">                    </span>
+<span style="color: #001080">                    data: { </span><span style="color: #008000">// pass optional custom data</span>
+<span style="color: #001080">                        color: </span><span style="color: #A31515">&quot;blue&quot;</span><span style="color: #001080">,</span>
+<span style="color: #001080">                    }</span>
+<span style="color: #001080">                }</span>
+<span style="color: #001080">            ]}</span>
+<span style="color: #001080">  </span>
+<span style="color: #001080">            dataContext={{ </span><span style="color: #008000">// Pass dataContext explicitly</span>
+<span style="color: #001080">                app:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">                    </span><span style="color: #001080">version:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">                },</span>
+<span style="color: #000000">                </span><span style="color: #001080">context:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Login Form&quot;</span>
+<span style="color: #000000">            }}</span>
+<span style="color: #000000">        &gt;  </span>
+<span style="color: #000000">    )</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #001080">LoginForm</span><span style="color: #000000">;</span>
+
+</code></pre>
+				<p>In-case you have both in your application, the data context passed via props will override the values from <code>        &lt;DataContext.Provider&gt;</code></p>
+				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+					<h2>API</h2>
+				</a>
+				<a href="#react" id="react" style="color: inherit; text-decoration: none;">
+					<h3>React</h3>
+				</a>
+				<ul>
+					<li>
+						<a href="#tracking-component-props" id="tracking-component-props" style="color: inherit; text-decoration: none;">
+							<h4>Tracking Component Props</h4>
+						</a>
+						<p>  The tracking-enabled component will accept all props required for the original component, along with the following:</p>
+						<table>
+							<thead>
+								<tr>
+									<th align="left">Props</th>
+									<th align="center">Required</th>
+									<th align="center">Description</th>
+									<th align="right">Type</th>
+								</tr>
+							</thead>
+							<tbody><tr>
+									<td align="left"><code>trackers</code></td>
+									<td align="center">Yes</td>
+									<td align="center">Each tracker object expects an <code>action</code> and <code>track</code> properties. Check the section below for the complete list of properties</td>
+									<td align="right"><code>UserInteraction.Tracker[]</code></td>
+								</tr>
+								<tr>
+									<td align="left"><code>origin</code></td>
+									<td align="center">Optional</td>
+									<td align="center">To provide some contextual information for the event origin</td>
+									<td align="right"><code>string</code></td>
+								</tr>
+								<tr>
+									<td align="left"><code>dataContext</code></td>
+									<td align="center">Optional</td>
+									<td align="center">an object property to  provide context of the taken event</td>
+									<td align="right"><code>UserInteraction.DataContext</code></td>
+								</tr>
+						</tbody></table>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<a href="#userinteractiontracker-object-properties" id="userinteractiontracker-object-properties" style="color: inherit; text-decoration: none;">
+							<h4><code>UserInteraction.Tracker</code> object properties</h4>
+						</a>
+						<table>
+							<thead>
+								<tr>
+									<th align="left">Property</th>
+									<th align="center">Required</th>
+									<th align="center">Description</th>
+									<th align="right">Type</th>
+								</tr>
+							</thead>
+							<tbody><tr>
+									<td align="left"><code>action</code></td>
+									<td align="center">Yes</td>
+									<td align="center">Type of event that needs to be tracked (React Synthetic events). Can take values such as <code>onClick</code>, <code>onChange</code></td>
+									<td align="right"><code>string</code></td>
+								</tr>
+								<tr>
+									<td align="left"><code>track</code></td>
+									<td align="center">Yes</td>
+									<td align="center">Callback that runs when above event occurs</td>
+									<td align="right"><code>(e, interactionResource: UserInteractionResource) =&gt; void</code></td>
+								</tr>
+								<tr>
+									<td align="left"><code>data</code></td>
+									<td align="center">Optional</td>
+									<td align="center">Can be used to provide some custom data. Accessible within <code>UserInteractionResource.data</code></td>
+									<td align="right"><code>Object&lt;any&gt;</code></td>
+								</tr>
+						</tbody></table>
+					</li>
+				</ul>
+				<a href="#interfaces" id="interfaces" style="color: inherit; text-decoration: none;">
+					<h3>Interfaces</h3>
+				</a>
+				<ul>
+					<li>
+						<a href="#userinteractionresource" id="userinteractionresource" style="color: inherit; text-decoration: none;">
+							<h4><code>UserInteractionResource</code></h4>
+						</a>
+					The <code>UserInteractionResource</code> object contains all properties from <code>BaseResource</code>, along with the following:</li>
+				</ul>
+				<pre><code><span style="color: #000000">type: </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">UserInteraction</span><span style="color: #000000">.</span><span style="color: #0070C1">TYPE</span><span style="color: #000000">; </span><span style="color: #008000">// &quot;UserInteraction&quot;</span>
+<span style="color: #000000">action: </span><span style="color: #001080">UserInteraction</span><span style="color: #000000">.</span><span style="color: #001080">Action</span><span style="color: #000000">; </span><span style="color: #008000">// Type of the event, such as &quot;onClick&quot;, &quot;onChange&quot;</span>
+<span style="color: #000000">source: {</span>
+<span style="color: #000000">    context: </span><span style="color: #001080">string</span><span style="color: #000000">; </span><span style="color: #008000">// To capture a &quot;global&quot; context of the event, such as &quot;Landing page&quot; or &quot;Login form&quot;</span>
+<span style="color: #000000">    </span><span style="color: #001080">origin</span><span style="color: #000000">?: </span><span style="color: #001080">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">    component: </span><span style="color: #001080">string</span><span style="color: #000000">; </span><span style="color: #008000">// Name of the React component</span>
+<span style="color: #000000">    element: {</span>
+<span style="color: #000000">        currentTarget: </span><span style="color: #001080">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">        target: </span><span style="color: #001080">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #001080">innerHTML</span><span style="color: #000000">?: </span><span style="color: #001080">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #001080">innerText</span><span style="color: #000000">?: </span><span style="color: #001080">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #001080">value</span><span style="color: #000000">?: </span><span style="color: #001080">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">    };</span>
+<span style="color: #000000">};</span>
+<span style="color: #001080">data</span><span style="color: #000000">?: </span><span style="color: #267F99">Object</span><span style="color: #000000">&lt;</span><span style="color: #001080">any</span><span style="color: #000000">&gt;; </span><span style="color: #008000">// Additional custom data that needs to be captured</span>
+</code></pre>
+				<ul>
+					<li>
+						<a href="#baseresource" id="baseresource" style="color: inherit; text-decoration: none;">
+							<h4><code>BaseResource</code></h4>
+						</a>
+					</li>
+				</ul>
+				<pre><code><span style="color: #000000">app: {</span>
+<span style="color: #000000">    version: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">};</span>
+<span style="color: #000000">date: </span><span style="color: #267F99">Date</span><span style="color: #000000">;</span>
+<span style="color: #000000">browser: {</span>
+<span style="color: #000000">    name: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">    version: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">    userAgent: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">    platform: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">    window: {</span>
+<span style="color: #000000">        width: </span><span style="color: #001080">number</span><span style="color: #000000">,</span>
+<span style="color: #000000">        height: </span><span style="color: #001080">number</span><span style="color: #000000">,</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">};</span>
+<span style="color: #000000">os: {</span>
+<span style="color: #000000">    name: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">    version: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">};</span>
+
+</code></pre>
+				<a href="#check-out-the-docs-folder-for-a-complete-list-of-api-reference" id="check-out-the-docs-folder-for-a-complete-list-of-api-reference" style="color: inherit; text-decoration: none;">
+					<h2>Check out the <a href="./docs">docs</a> folder for a complete list of API reference.</h2>
+				</a>
+				<p>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_interaction_tracking_browser.html">lib/interaction-<wbr>tracking/browser</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_resources_baseresource.html">lib/resources/base<wbr>Resource</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/lib_resources_userinteractionresource.html">lib/resources/user<wbr>Interaction<wbr>Resource</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/react_components_withdatacontext.html">react/components/with<wbr>Data<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/react_components_withtracking.html">react/components/with<wbr>Tracking</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/react_contexts_datacontext.html">react/contexts/data<wbr>Context</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
