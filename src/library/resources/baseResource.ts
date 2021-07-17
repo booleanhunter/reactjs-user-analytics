@@ -7,6 +7,7 @@ export interface BaseResource {
     app: {
         version: string,
     };
+    session?: Object<any>, // User-session details
     date: Date;
     browser: {
         name: string,
@@ -23,5 +24,9 @@ export interface BaseResource {
         version: string,
     };
 }
+
+export type Object<T> = {
+    [P in keyof T]: T[P]
+};
 
 export default BaseResource;

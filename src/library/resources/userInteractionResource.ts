@@ -1,10 +1,6 @@
-import BaseResource from './baseResource';
+import BaseResource, { Object } from './baseResource';
 
 import { getUserOS } from '../browser/utils';
-
-export type Object<T> = {
-    [P in keyof T]: T[P]
-};
 
 /**
  * Resource object returned by a `tracker`'s `track` function
@@ -35,6 +31,7 @@ export interface UserInteractionResource extends BaseResource {
 export namespace UserInteraction {
     export interface DataContext {
         app: BaseResource["app"],
+        session?: BaseResource["session"],
         context: UserInteractionResource["source"]["context"],
     }
 
@@ -45,8 +42,19 @@ export namespace UserInteraction {
      *
      */
     export type Action =
-    | "onClick" 
+    | "onClick"
+    | "onMouseOver"
+    | "onMouseEnter"
+    | "onMouseLeave"
+
     | "onChange"
+    | "onSubmit"
+    | "onReset"
+
+    | "onSelect"
+
+    | "onScroll"
+
 
     /**
      * Type of the individual object in `trackers=Trackers[]` used as the prop in the Tracking component
