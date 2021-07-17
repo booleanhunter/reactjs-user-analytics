@@ -1,5 +1,6 @@
 import React from 'react';
-import { Object, UserInteraction } from '../../resources/userInteractionResource';
+import { Object } from '../../resources/baseResource';
+import { UserInteraction } from '../../resources/userInteractionResource';
 /**
  * Props required for the Tracking component
  */
