@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "docs": "typedoc src/library/user-analytics --gitRevision develop --out ./public/docs",
+    "docs": "typedoc src/library --gitRevision develop --out ./public/docs",
     "tsc": "tsc --project tsconfig.prod.json",
     "prepublish": "npm run tsc"
   },
@@ -66,6 +66,6 @@
     "@types/styled-components": "^5.1.8",
     "antd": "^4.12.3",
     "styled-components": "^5.2.1",
-    "typedoc": "^0.20.32"
+    "typedoc": "^0.21.2"
   }
 }
