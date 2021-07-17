@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-
+import { Object } from '../../resources/baseResource';
 import {
-    Object,
     UserInteraction,
 } from '../../resources/userInteractionResource';
 

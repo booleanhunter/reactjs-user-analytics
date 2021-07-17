@@ -1,7 +1,4 @@
-import BaseResource from './baseResource';
-export declare type Object<T> = {
-    [P in keyof T]: T[P];
-};
+import BaseResource, { Object } from './baseResource';
 /**
  * Resource object returned by a `tracker`'s `track` function
  *
@@ -30,6 +27,7 @@ export interface UserInteractionResource extends BaseResource {
 export declare namespace UserInteraction {
     interface DataContext {
         app: BaseResource["app"];
+        session?: BaseResource["session"];
         context: UserInteractionResource["source"]["context"];
     }
     const TYPE = "UserInteraction";
@@ -37,7 +35,7 @@ export declare namespace UserInteraction {
      * Type of the event to be tracked. Must be a **valid** React Synthetic event.
      *
      */
-    type Action = "onClick" | "onChange";
+    type Action = "onClick" | "onMouseOver" | "onMouseEnter" | "onMouseLeave" | "onChange" | "onSubmit" | "onReset" | "onSelect" | "onScroll";
     /**
      * Type of the individual object in `trackers=Trackers[]` used as the prop in the Tracking component
      *
