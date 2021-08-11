@@ -34,16 +34,17 @@ export function withTracking(Component) {
     return function (props) {
         var eventHandlers = {};
         var trackers = props.trackers, origin = props.origin, dataContextFromProps = props.dataContext, originalProps = __rest(props, ["trackers", "origin", "dataContext"]);
-        var dataContext = useContext(DataContext);
-        if (dataContextFromProps) {
-            dataContext = dataContextFromProps;
-        }
+        var dataContext = dataContextFromProps ? dataContextFromProps : useContext(DataContext);
         function trackUserInteraction(e, tracker) {
             var targetNode = e.target;
             var value = getValueFromNode(e);
-            var userInteractionResource = UserInteraction.generateResource(dataContext.app, tracker.action, __assign(__assign({ context: dataContext.context }, (originalProps.origin && {
-                origin: originalProps.origin
-            })), { component: Component.displayName || Component.name, element: __assign({ currentTarget: e.currentTarget.nodeName, target: targetNode.nodeName || e.currentTarget.nodeName, innerHTML: targetNode.innerHTML, innerText: targetNode.innerText }, (value && {
+            var closestComponent = targetNode.closest('[data-element-type="component"]');
+            var userInteractionResource = UserInteraction.generateResource(dataContext.app, tracker.action, __assign(__assign({ context: dataContext.context }, (origin && {
+                origin: origin,
+            })), { component: {
+                    currentTarget: Component.displayName || Component.name,
+                    target: closestComponent ? closestComponent.getAttribute('data-display-name') : null
+                }, element: __assign({ currentTarget: e.currentTarget.nodeName, target: targetNode.nodeName || e.currentTarget.nodeName, innerHTML: targetNode.innerHTML, innerText: targetNode.innerText }, (value && {
                     value: value,
                 })) }), tracker.data);
             tracker.track(e, userInteractionResource);

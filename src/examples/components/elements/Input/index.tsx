@@ -15,6 +15,8 @@ function Input(props: InputProps) {
 
     return (
         <AntInput
+            data-element-type="component"
+            data-display-name="Input"
             {...props}
         />
     );

@@ -16,6 +16,8 @@ function Menu(props: MenuProps) {
    
     return (
         <AntMenu
+            data-element-type="component"
+            data-display-name="Menu"
             theme={theme}
             mode={mode}
             defaultSelectedKeys={defaultSelectedKeys}

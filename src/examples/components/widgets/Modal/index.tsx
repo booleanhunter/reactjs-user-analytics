@@ -11,6 +11,8 @@ function Modal(props: ModalProps) {
 
     return (
         <AntModal
+            data-element-type="component"
+            data-display-name="Modal"
             {...props}
         />
     );

@@ -11,6 +11,8 @@ function Card(props: CardProps) {
 
     return (
         <AntCard
+            data-element-type="component"
+            data-display-name="Card"
             {...props}
         />
     );

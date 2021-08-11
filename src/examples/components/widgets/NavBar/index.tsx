@@ -15,7 +15,10 @@ function NavBar(props: NavbarProps) {
 
     const logoImage = logo ? <img src={logo} style={{ width: "20px" }}/> : null;
     return (   
-        <Header>
+        <Header
+            data-element-type="component"
+            data-display-name="Navbar"
+            >
             <div className="logo" style={{float: 'left'}}>
                 {logoImage}
             </div>

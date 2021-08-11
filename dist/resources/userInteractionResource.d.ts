@@ -9,7 +9,10 @@ export interface UserInteractionResource extends BaseResource {
     source: {
         context: string;
         origin?: string;
-        component: string;
+        component: {
+            currentTarget: string;
+            target: string | null;
+        };
         element: {
             currentTarget: string;
             target: string;
