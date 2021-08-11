@@ -11,6 +11,8 @@ function Header(props: HeaderProps) {
 
     return (
         <PageHeader
+            data-element-type="component"
+            data-display-name="Header"
             {...props}
         />
     );

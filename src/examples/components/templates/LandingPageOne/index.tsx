@@ -103,7 +103,7 @@ function LandingPage(props: LandingPageProps) {
                 </NavBar>
                 <StyledContent>
                     <div style={headerStyle}>
-                        <h1>Let us help solve your critical website development challenges.</h1>
+                        <h1>A sample Landing page that uses tracking-enabled components</h1>
                     </div>
                 </StyledContent>
                 <NewsLetter

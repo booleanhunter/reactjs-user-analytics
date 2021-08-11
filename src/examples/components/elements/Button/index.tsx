@@ -26,6 +26,8 @@ function Button(props: ButtonProps) {
 
     return (
         <AntButton
+            data-element-type="component"
+            data-display-name="Button"
             {...rest}
             onClick={onClick}
         >

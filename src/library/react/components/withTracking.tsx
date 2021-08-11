@@ -29,12 +29,8 @@ export function withTracking (
     return function(props: TrackerProps) {
         let eventHandlers: Object<any> = {};
         const { trackers, origin, dataContext: dataContextFromProps, ...originalProps } = props;
-
-        let dataContext = useContext(DataContext);
-
-        if (dataContextFromProps) {
-            dataContext = dataContextFromProps
-        }
+        
+        const dataContext = dataContextFromProps ? dataContextFromProps : useContext(DataContext);
 
         function trackUserInteraction(
             e: React.SyntheticEvent,
@@ -42,15 +38,21 @@ export function withTracking (
         ) {
             const targetNode = e.target as HTMLElement;
             const value = getValueFromNode(e);
+
+            const closestComponent = targetNode.closest('[data-element-type="component"]');
+
             const userInteractionResource = UserInteraction.generateResource(
                 dataContext.app,
                 tracker.action,
                 {
                     context: dataContext.context,
-                    ...(originalProps.origin && {
-                        origin: originalProps.origin
+                    ...(origin && {
+                        origin,
                     }),
-                    component: Component.displayName || Component.name,
+                    component: {
+                        currentTarget: Component.displayName || Component.name,
+                        target: closestComponent ? closestComponent.getAttribute('data-display-name') : null
+                    },
                     element: {
                         currentTarget: e.currentTarget.nodeName,
                         target: targetNode.nodeName || e.currentTarget.nodeName,
@@ -86,10 +88,8 @@ export function withTracking (
 };
 
 function getValueFromNode(e: React.SyntheticEvent) {
-
     if (e.currentTarget.nodeName === "INPUT") {
         const currentTarget = e.target as HTMLInputElement;
         return currentTarget.value
     }
 }
-
