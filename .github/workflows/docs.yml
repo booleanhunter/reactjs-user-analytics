@@ -1,0 +1,43 @@
+name: Generate Documentation
+
+on:
+  push:
+    branches:
+      - main  # Run on pushes to the main branch
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install @microsoft/tsdoc typedoc
+
+      - name: Generate documentation
+        run: npm run docs
+
+      - name: Upload documentation to GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./public/docs  # Path where docs are generated
+
+  deploy:
+    needs: generate-docs
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
