@@ -1,0 +1,74 @@
+.split-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.split-left,
+.split-right {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.split-title {
+    margin-bottom: 16px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.split-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .split-layout {
+        flex-direction: column;
+    }
+
+    .split-left,
+    .split-right {
+        padding: 16px;
+        height: auto; /* Allow sections to grow naturally */
+    }
+
+    .split-left {
+        border-bottom: 1px solid #ddd; /* Optional visual separation */
+    }
+}
+
+/* for code block */
+
+.custom-code-block {
+    background-color: #f6f8fa;
+    color: #24292f;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+    border: 1px solid #d1d5da;
+    margin: 1rem 0;
+}
+
+/* Optional syntax-like feel (minimalistic) */
+.custom-code-block .tag {
+    color: #005cc5;
+}
+.custom-code-block .attr {
+    color: #6f42c1;
+}
+.custom-code-block .value {
+    color: #032f62;
+}
+.custom-code-block .comment {
+    color: #6a737d;
+    font-style: italic;
+}

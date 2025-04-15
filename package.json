@@ -1,76 +1,47 @@
 {
-  "name": "user-analytics",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/pako": "^1.0.1",
-    "localforage": "^1.9.0",
-    "pako": "^2.0.3",
-    "react-router": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
-    "web-vitals": "^2.0.1",
-    "workerize-loader": "^1.3.0"
-  },
-  "peerDependencies": {
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build-scripts": "react-scripts build",
-    "build": "npm run tsc",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "docs": "typedoc src/library --gitRevision develop --out ./public/docs",
-    "tsc": "tsc --project tsconfig.prod.json",
-    "prepublish": "npm run tsc"
-  },
-  "files": [
-    "dist/"
-  ],
-  "main": "dist/index.js",
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "name": "react-user-analytics",
+    "version": "0.0.1",
+    "type": "module",
+    "files": [
+        "dist"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@microsoft/tsdoc": "^0.13.0",
-    "@storybook/addon-actions": "^6.1.18",
-    "@storybook/addon-controls": "^6.1.18",
-    "@storybook/addon-essentials": "^6.1.18",
-    "@storybook/addon-links": "^6.1.18",
-    "@storybook/node-logger": "^6.1.18",
-    "@storybook/preset-create-react-app": "^3.1.6",
-    "@storybook/react": "^6.1.18",
-    "@types/styled-components": "^5.1.8",
-    "antd": "^4.12.3",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "styled-components": "^5.2.1",
-    "typedoc": "^0.21.2"
-  }
+    "main": "./dist/react-user-analytics.umd.cjs",
+    "module": "./dist/react-user-analytics.js",
+    "exports": {
+        ".": {
+            "import": "./dist/react-user-analytics.js",
+            "require": "./dist/react-user-analytics.umd.cjs"
+        }
+    },
+    "scripts": {
+        "start": "vite --port 3000 --open --mode development",
+        "dev": "vite --port 3000 --open --mode development",
+        "build": "tsc && vite build --mode production",
+        "build-demo": "tsc && vite build -c vite-demo.config.js --mode production",
+        "preview": "npm run build-demo && npm run docs && vite preview --open",
+        "serve": "vite preview --open",
+        "test": "vitest",
+        "lint": "npx prettier . --check",
+        "docs": "typedoc src --gitRevision develop --out ./dist/docs",
+        "tsc": "tsc --project tsconfig.json"
+    },
+    "dependencies": {
+        "localforage": "^1.10.0",
+        "pako": "^2.0.3",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "devDependencies": {
+        "@microlink/react-json-view": "^1.26.1",
+        "@microsoft/tsdoc": "^0.13.0",
+        "@types/pako": "^1.0.1",
+        "@vitejs/plugin-react": "^4.3.4",
+        "prettier": "3.5.3",
+        "react-router": "^7.5.0",
+        "typedoc": "^0.28.0",
+        "typescript": "^5.8.3",
+        "vite": "^6.2.1",
+        "vite-plugin-dts": "^4.5.3",
+        "vitest": "^3.0.8"
+    }
 }

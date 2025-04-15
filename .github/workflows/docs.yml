@@ -1,43 +1,46 @@
-name: Generate Documentation
+name: Deploy Demo and Documentation
 
 on:
-  push:
-    branches:
-      - main  # Run on pushes to the main branch
-  pull_request:
-    branches:
-      - main
+    push:
+        branches:
+            - main # Run on pushes to the main branch
+    pull_request:
+        branches:
+            - main
 
 jobs:
-  generate-docs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    build-website:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 'latest'
-          cache: 'npm'
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 'latest'
+                  cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install @microsoft/tsdoc typedoc
+            - name: Install dependencies
+              run: npm install
 
-      - name: Generate documentation
-        run: npm run docs
+            - name: Generate demo and documentation
+              run: npm run build-demo && npm run docs
 
-      - name: Upload documentation to GitHub Pages
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./public/docs  # Path where docs are generated
+            - name: Setup Pages
+              uses: actions/configure-pages@v4
 
-  deploy:
-    needs: generate-docs
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+            - name: Upload demo and documentation to GitHub Pages
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: './dist' # Path where docs are generated
+
+    deploy:
+        needs: build-website
+        runs-on: ubuntu-latest
+        permissions:
+            pages: write
+            id-token: write
+        steps:
+            - name: Deploy to GitHub Pages
+              uses: actions/deploy-pages@v4

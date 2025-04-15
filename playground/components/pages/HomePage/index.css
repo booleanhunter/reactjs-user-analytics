@@ -1,0 +1,53 @@
+.homepage-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #333;
+}
+
+.homepage-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.homepage-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.homepage-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.homepage-links h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.homepage-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.homepage-links li {
+    margin-bottom: 10px;
+}
+
+.homepage-links a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+}
+
+.homepage-links a:hover {
+    text-decoration: underline;
+}
+
+.homepage-footer {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #888;
+}
