@@ -5,14 +5,14 @@ image: node:latest
 # This folder is cached between builds
 # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
 cache:
-  paths:
-    - node_modules/
+    paths:
+        - node_modules/
 
 # Instructions to GitLab Runner for generating API documentation on Gitlab Pages
 pages:
-  script:
-    - npm install @microsoft/tsdoc typedoc
-    - npm run docs
-  artifacts:
-    paths:
-      - public/docs
+    script:
+        - npm install @microsoft/tsdoc typedoc
+        - npm run docs
+    artifacts:
+        paths:
+            - public/docs

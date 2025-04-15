@@ -1,0 +1,32 @@
+.custom-page-header {
+    background-color: #fff;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.custom-page-header-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.custom-page-header-title h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.custom-page-header-subtitle {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.custom-page-header-children {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,55 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.landing-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(to right, #ffffff, #f0f4f8);
+    text-align: center;
+    gap: 5%;
+}
+
+.landing-title {
+    font-size: 2rem;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+.newsletter {
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.newsletter-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #222;
+}
+
+.newsletter-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Adds margin between Input and Button */
+    margin-top: 16px;
+}

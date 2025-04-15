@@ -1,0 +1,31 @@
+.custom-card {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 16px;
+    margin: 16px 0;
+    margin: auto;
+}
+
+.custom-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.custom-card-title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.custom-card-extra {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.custom-card-body {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.85);
+}
