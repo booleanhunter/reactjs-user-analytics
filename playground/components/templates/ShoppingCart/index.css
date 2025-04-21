@@ -1,0 +1,10 @@
+.product-card {
+    margin-bottom: 20px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* increased from 10px to 16px for more breathing room */
+    margin: 10px 0;
+}

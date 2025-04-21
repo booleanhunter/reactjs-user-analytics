@@ -7,6 +7,7 @@ import ButtonInteractionLogger from '@examples/ButtonWithTracking';
 import InputInteractionLogger from '@examples/InputWithTracking';
 import NewsletterSignupInteractionLogger from '@examples/NewsletterSignupWithTracking';
 import EventRSVPInteractionLogger from '@examples/EventRSVPWithTracking';
+import ShoppingCartInteractionLogger from '@examples/ShoppingCartWithTracking';
 
 export const router = createBrowserRouter(
     [
@@ -45,6 +46,10 @@ export const router = createBrowserRouter(
                             path: 'event-rsvp',
                             element: <EventRSVPInteractionLogger />,
                         },
+                        {
+                            path: 'shopping-cart',
+                            element: <ShoppingCartInteractionLogger />,
+                        }
                     ],
                 },
             ]

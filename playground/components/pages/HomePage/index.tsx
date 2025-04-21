@@ -29,6 +29,9 @@ const HomePage = () => {
                     <li>
                         <Link to="/examples/pages/event-rsvp">📰 Event RSVP Example</Link>
                     </li>
+                    <li>
+                        <Link to="/examples/pages/shopping-cart">🛒 Shopping Cart Example</Link>
+                    </li>
                 </ul>
                 <p>
                     <a href="docs/index.html">View API documentation</a>
