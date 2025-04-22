@@ -73,7 +73,7 @@ export namespace UserInteraction {
      * Returns a `UserInteractionResource` object
      *
      */
-    export function generateResource(
+    export function mapToResource(
         app: BaseResource['app'],
         action: UserInteraction.Action,
         source: UserInteractionResource['source'],

@@ -56,6 +56,6 @@ export declare namespace UserInteraction {
      * Returns a `UserInteractionResource` object
      *
      */
-    function generateResource(app: BaseResource['app'], action: UserInteraction.Action, source: UserInteractionResource['source'], data: UserInteractionResource['data']): UserInteractionResource;
+    function mapToResource(app: BaseResource['app'], action: UserInteraction.Action, source: UserInteractionResource['source'], data: UserInteractionResource['data']): UserInteractionResource;
 }
 export default UserInteractionResource;
