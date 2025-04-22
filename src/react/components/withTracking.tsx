@@ -47,6 +47,7 @@ export function withTracking(Component: React.ComponentType<any>) {
                 '[data-element-type="component"]',
             );
 
+
             const userInteractionResource = UserInteraction.generateResource(
                 dataContext.app,
                 tracker.action,
