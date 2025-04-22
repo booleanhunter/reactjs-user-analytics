@@ -19,6 +19,18 @@ export interface UserInteractionResource extends BaseResource {
         element: {
             currentTarget: string;
             target: string;
+            position: {
+                x: number;
+                y: number;
+                top: number;
+                right: number;
+                bottom: number;
+                left: number;
+            };
+            dimensions: {
+                width: number;
+                height: number;
+            };
             innerHTML?: string;
             innerText?: string;
             value?: string;

@@ -71,6 +71,18 @@ export function withTracking(Component: React.ComponentType<any>) {
                         ...(value && {
                             value,
                         }),
+                        position: {
+                            x: Math.round( domRect.x * 1e3 ) / 1e3,
+                            y: Math.round( domRect.y * 1e3 ) / 1e3,
+                            top: Math.round( domRect.top * 1e3 ) / 1e3,
+                            right: Math.round( domRect.right * 1e3 ) / 1e3,
+                            bottom: Math.round( domRect.bottom * 1e3 ) / 1e3,
+                            left: Math.round( domRect.left * 1e3 ) / 1e3,
+                        },
+                        dimensions: {
+                            width: Math.round( domRect.width * 1e3 ) / 1e3,
+                            height: Math.round( domRect.height * 1e3 ) / 1e3,
+                        },
                     },
                 },
                 tracker.data,
