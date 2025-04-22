@@ -42,10 +42,12 @@ export function withTracking(Component: React.ComponentType<any>) {
         ) {
             const targetNode = e.target as HTMLElement;
             const value = getValueFromNode(e);
+            const domRect = e.target.getBoundingClientRect();
 
             const closestComponent = targetNode.closest(
                 '[data-element-type="component"]',
             );
+
 
             const userInteractionResource = UserInteraction.generateResource(
                 dataContext.app,

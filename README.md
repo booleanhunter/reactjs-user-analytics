@@ -264,49 +264,4 @@ In-case you have both in your application, the data context passed via props wil
     | `track`  |   Yes    |                                   Callback that runs when above event occurs                                   | `(e, interactionResource: UserInteractionResource) => void` |
     | `data`   | Optional |           Can be used to provide some custom data. Accessible within `UserInteractionResource.data`            |                                               `Object<any>` |
 
-### Interfaces
-
-- #### `UserInteractionResource`
-    The `UserInteractionResource` object contains all properties from `BaseResource`, along with the following:
-
-```typescript
-type: typeof UserInteraction.TYPE; // "UserInteraction"
-action: UserInteraction.Action; // Type of the event, such as "onClick", "onChange"
-source: {
-    context: string; // To capture a "global" context of the event, such as "Landing page" or "Login form"
-    origin?: string;
-    component: string; // Name of the React component
-    element: {
-        currentTarget: string;
-        target: string;
-        innerHTML?: string;
-        innerText?: string;
-        value?: string;
-    };
-};
-data?: Object<any>; // Additional custom data that needs to be captured
-```
-
-- #### `BaseResource`
-
-```typescript
-app: {
-    version: string,
-};
-date: Date;
-browser: {
-    name: string,
-    version: string,
-    userAgent: string,
-    platform: string,
-    window: {
-        width: number,
-        height: number,
-    }
-};
-os: {
-    name: string,
-    version: string,
-};
-
 ```

@@ -93,6 +93,10 @@ export namespace UserInteraction {
                     height: window.innerHeight,
                 },
             },
+            page: {
+                title: document.title,
+                url: location.href,
+            },
             os: getUserOS(),
             action,
             source,

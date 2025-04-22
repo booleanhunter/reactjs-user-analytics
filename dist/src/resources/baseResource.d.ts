@@ -23,6 +23,10 @@ export interface BaseResource {
         name: string;
         version: string;
     };
+    page: {
+        title: string;
+        url: string;
+    };
 }
 export type Object<T> = {
     [P in keyof T]: T[P];
